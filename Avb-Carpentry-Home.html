@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVB Carpentry - Crafting Timber, Creating Stories</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#5C4033',secondary:'#F5F5DC'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://public.readdy.ai/ai/img_res/e4e1f59596ff4092110bb1e89eaf6897.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .wood-texture {
+            background-image: url('https://public.readdy.ai/ai/img_res/cf2e05d4fcf49d316fb73bba77fdf425.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .testimonial-bg {
+            background-image: linear-gradient(rgba(92, 64, 51, 0.85), rgba(92, 64, 51, 0.85)), url('https://public.readdy.ai/ai/img_res/e067c9b0438a33fcbe6a271ea75eed68.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(92, 64, 51, 0.1);
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+        .custom-input {
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .custom-input:focus {
+            border-color: #5C4033;
+            box-shadow: 0 0 0 3px rgba(92, 64, 51, 0.2);
+            outline: none;
+        }
+        .custom-checkbox {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #5C4033;
+            border-radius: 4px;
+            position: relative;
+        }
+        .custom-checkbox:checked {
+            background-color: #5C4033;
+        }
+        .custom-checkbox:checked::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 6px;
+            width: 6px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        /* Custom scrollbar styles */
+        .testimonials-container {
+            scrollbar-width: thin;
+            scrollbar-color: #5C4033 #f5f5f5;
+            -ms-overflow-style: none;
+        }
+        .testimonials-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        .testimonials-container::-webkit-scrollbar-track {
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+        .testimonials-container::-webkit-scrollbar-thumb {
+            background-color: #5C4033;
+            border-radius: 4px;
+            border: 2px solid #f5f5f5;
+        }
+        .testimonials-container::-webkit-scrollbar-thumb:hover {
+            background-color: #4a3329;
+        }
+    </style>
+</head>
+<body class="bg-[#FAFAFA]">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="playfair text-primary text-2xl font-bold">AVB Carpentry</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-gray-700 hover:text-primary transition-colors">About</a>
+                <a href="#services" class="text-gray-700 hover:text-primary transition-colors">Services</a>
+                <a href="#portfolio" class="text-gray-700 hover:text-primary transition-colors">Portfolio</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-primary transition-colors">Testimonials</a>
+                <a href="#contact" class="text-gray-700 hover:text-primary transition-colors">Contact</a>
+            </div>
+            <div class="md:hidden w-10 h-10 flex items-center justify-center">
+                <i class="ri-menu-line ri-lg text-primary"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section h-screen flex items-center justify-center text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="playfair text-5xl md:text-6xl font-bold mb-4">Crafting Timber, Creating Stories</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Boutique carpentry blending traditional craftsmanship with modern design aesthetics for discerning clients.</p>
+            <a href="#contact" class="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-3 text-lg font-medium !rounded-button shadow-lg hover:shadow-xl transition-all whitespace-nowrap">Get a Custom Quote</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="https://public.readdy.ai/ai/img_res/14118001a4b3b3e57b266d0f69ba3a41.jpg" alt="Master Craftsman at Work" class="rounded-lg shadow-xl object-cover object-top w-full h-[500px]">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="playfair text-4xl font-bold text-gray-800 mb-6">Our Craft, Our Passion</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">Founded in 2010 by master craftsman Alexander Blackwood, AVB Carpentry has established itself as a premier provider of bespoke wooden creations that marry traditional techniques with contemporary design sensibilities.</p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">Each piece that leaves our workshop tells a unique story – of the carefully selected timber, of the hands that shaped it, and of the vision that inspired it. We believe that exceptional carpentry is not just about technical precision, but about understanding the soul of the wood and the desires of our clients.</p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">Our team of skilled artisans brings decades of combined experience to every project, ensuring that each creation not only meets but exceeds expectations in both form and function.</p>
+                    <div class="flex items-center space-x-6">
+                        <div class="text-center">
+                            <p class="playfair text-4xl font-bold text-primary">15+</p>
+                            <p class="text-gray-600">Years Experience</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="playfair text-4xl font-bold text-primary">500+</p>
+                            <p class="text-gray-600">Projects Completed</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="playfair text-4xl font-bold text-primary">98%</p>
+                            <p class="text-gray-600">Client Satisfaction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-secondary/30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="playfair text-4xl font-bold text-gray-800 mb-4">Our Services</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">We offer a comprehensive range of carpentry services, each delivered with our signature blend of traditional craftsmanship and contemporary design.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300 cursor-pointer" onclick="scrollToContact()">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+                        <i class="ri-home-4-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="playfair text-2xl font-bold text-gray-800 mb-3">Custom Furniture</h3>
+                    <p class="text-gray-600 mb-4">Bespoke pieces designed and crafted to your exact specifications, from dining tables to wardrobes and everything in between.</p>
+                    <a href="#contact" class="text-primary font-medium flex items-center">
+                        Learn more
+                        <i class="ri-arrow-right-line ml-2"></i>
+                    </a>
+                </div>
+                <!-- Service 2 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300 cursor-pointer" onclick="scrollToContact()">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+                        <i class="ri-restaurant-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="playfair text-2xl font-bold text-gray-800 mb-3">Kitchen Installations</h3>
+                    <p class="text-gray-600 mb-4">Expertly crafted kitchen cabinetry and islands that combine stunning aesthetics with practical functionality.</p>
+                    <a href="#contact" class="text-primary font-medium flex items-center">
+                        Learn more
+                        <i class="ri-arrow-right-line ml-2"></i>
+                    </a>
+                </div>
+                <!-- Service 3 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300 cursor-pointer" onclick="scrollToContact()">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+                        <i class="ri-tools-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="playfair text-2xl font-bold text-gray-800 mb-3">Wood Restoration</h3>
+                    <p class="text-gray-600 mb-4">Breathing new life into cherished wooden pieces, preserving their character while restoring their beauty and functionality.</p>
+                    <a href="#contact" class="text-primary font-medium flex items-center">
+                        Learn more
+                        <i class="ri-arrow-right-line ml-2"></i>
+                    </a>
+                </div>
+                <!-- Service 4 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300 cursor-pointer" onclick="scrollToContact()">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+                        <i class="ri-door-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="playfair text-2xl font-bold text-gray-800 mb-3">Architectural Elements</h3>
+                    <p class="text-gray-600 mb-4">Custom doors, staircases, moldings, and other architectural features that elevate your space with timeless elegance.</p>
+                    <a href="#contact" class="text-primary font-medium flex items-center">
+                        Learn more
+                        <i class="ri-arrow-right-line ml-2"></i>
+                    </a>
+                </div>
+                <!-- Service 5 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300 cursor-pointer" onclick="scrollToContact()">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+                        <i class="ri-building-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="playfair text-2xl font-bold text-gray-800 mb-3">Commercial Spaces</h3>
+                    <p class="text-gray-600 mb-4">Distinctive wooden elements for retail, hospitality, and office environments that create memorable brand experiences.</p>
+                    <a href="#contact" class="text-primary font-medium flex items-center">
+                        Learn more
+                        <i class="ri-arrow-right-line ml-2"></i>
+                    </a>
+                </div>
+                <!-- Service 6 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300 cursor-pointer" onclick="scrollToContact()">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+                        <i class="ri-paint-brush-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="playfair text-2xl font-bold text-gray-800 mb-3">Design Consultation</h3>
+                    <p class="text-gray-600 mb-4">Expert guidance on wood selection, design possibilities, and practical considerations for your carpentry projects.</p>
+                    <a href="#contact" class="text-primary font-medium flex items-center">
+                        Learn more
+                        <i class="ri-arrow-right-line ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="playfair text-4xl font-bold text-gray-800 mb-4">Our Portfolio</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Explore a selection of our finest work, showcasing the breadth of our capabilities and our commitment to exceptional craftsmanship.</p>
+            </div>
+            <div class="flex justify-center mb-8">
+                <div class="inline-flex bg-gray-100 p-1 rounded-full">
+                    <button class="portfolio-filter px-6 py-2 rounded-full bg-primary text-white whitespace-nowrap" data-category="all">All Projects</button>
+                    <button class="portfolio-filter px-6 py-2 rounded-full text-gray-700 hover:bg-gray-200 whitespace-nowrap" data-category="furniture">Furniture</button>
+                    <button class="portfolio-filter px-6 py-2 rounded-full text-gray-700 hover:bg-gray-200 whitespace-nowrap" data-category="kitchen">Kitchens</button>
+                    <button class="portfolio-filter px-6 py-2 rounded-full text-gray-700 hover:bg-gray-200 whitespace-nowrap" data-category="restoration">Restoration</button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="portfolioGrid">
+                <!-- Portfolio Item 1 -->
+                <div class="portfolio-item gallery-item relative overflow-hidden rounded-lg shadow-md transition-all duration-300" data-category="furniture">
+                    <img src="https://public.readdy.ai/ai/img_res/8f7be80abf7c990fb9c8823c7ad6e37c.jpg" alt="Custom Dining Table" class="w-full h-[300px] object-cover object-top">
+                </div>
+                <!-- Portfolio Item 2 -->
+                <div class="portfolio-item gallery-item relative overflow-hidden rounded-lg shadow-md transition-all duration-300" data-category="kitchen">
+                    <img src="https://public.readdy.ai/ai/img_res/4fcfa00f3401b3c2c3a6be5c6c9024d4.jpg" alt="Modern Kitchen Installation" class="w-full h-[300px] object-cover object-top">
+                </div>
+                <!-- Portfolio Item 3 -->
+                <div class="portfolio-item gallery-item relative overflow-hidden rounded-lg shadow-md transition-all duration-300" data-category="restoration">
+                    <img src="https://public.readdy.ai/ai/img_res/550dca22dd4c28e55e2e47477a7a8a1c.jpg" alt="Antique Cabinet Restoration" class="w-full h-[300px] object-cover object-top">
+                </div>
+                <!-- Portfolio Item 4 -->
+                <div class="portfolio-item gallery-item relative overflow-hidden rounded-lg shadow-md transition-all duration-300" data-category="furniture">
+                    <img src="https://public.readdy.ai/ai/img_res/d5834674c4fd66221f0f44e2954da2b5.jpg" alt="Custom Staircase" class="w-full h-[300px] object-cover object-top">
+                </div>
+                <!-- Portfolio Item 5 -->
+                <div class="portfolio-item gallery-item relative overflow-hidden rounded-lg shadow-md transition-all duration-300" data-category="kitchen">
+                    <img src="https://public.readdy.ai/ai/img_res/f9dcaaf71b2e81355c31e2f45036fd61.jpg" alt="Office Reception Desk" class="w-full h-[300px] object-cover object-top">
+                </div>
+                <!-- Portfolio Item 6 -->
+                <div class="portfolio-item gallery-item relative overflow-hidden rounded-lg shadow-md transition-all duration-300" data-category="restoration">
+                    <img src="https://public.readdy.ai/ai/img_res/b163db07f329ba3aeca6298e234b1fff.jpg" alt="Built-in Bookshelves" class="w-full h-[300px] object-cover object-top">
+                </div>
+                <!-- Additional Portfolio Items (Initially Hidden) -->
+                <!-- Portfolio Item 7 -->
+                <div class="portfolio-item gallery-item relative overflow-hidden rounded-lg shadow-md transition-all duration-300 hidden" data-category="furniture">
+                    <img src="https://public.readdy.ai/ai/img_res/8f7be80abf7c990fb9c8823c7ad6e37c.jpg" alt="Custom Bookshelf" class="w-full h-[300px] object-cover object-top">
+                </div>
+                <!-- Portfolio Item 8 -->
+                <div class="portfolio-item gallery-item relative overflow-hidden rounded-lg shadow-md transition-all duration-300 hidden" data-category="kitchen">
+                    <img src="https://public.readdy.ai/ai/img_res/4fcfa00f3401b3c2c3a6be5c6c9024d4.jpg" alt="Kitchen Island" class="w-full h-[300px] object-cover object-top">
+                </div>
+                <!-- Portfolio Item 9 -->
+                <div class="portfolio-item gallery-item relative overflow-hidden rounded-lg shadow-md transition-all duration-300 hidden" data-category="restoration">
+                    <img src="https://public.readdy.ai/ai/img_res/550dca22dd4c28e55e2e47477a7a8a1c.jpg" alt="Antique Table" class="w-full h-[300px] object-cover object-top">
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <button id="togglePortfolio" class="bg-white border border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-button font-medium transition-colors whitespace-nowrap">View All Projects</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 testimonial-bg text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="playfair text-4xl font-bold mb-4">Client Testimonials</h2>
+                <p class="max-w-2xl mx-auto opacity-80">Hear what our clients have to say about their experience working with AVB Carpentry.</p>
+            </div>
+            <div class="testimonials-container flex overflow-x-auto pb-8 gap-6 snap-x snap-mandatory">
+                <!-- Testimonial 1 -->
+                <div class="bg-white text-gray-800 p-8 rounded-lg shadow-lg min-w-[350px] max-w-[350px] snap-start">
+                    <div class="flex text-primary mb-4">
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                    </div>
+                    <p class="mb-6 italic">"The dining table that Alexander crafted for us has become the heart of our home. The attention to detail and the quality of the craftsmanship is exceptional. It's not just furniture; it's a family heirloom."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mr-4">
+                            <i class="ri-user-3-line ri-lg text-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Emily Richardson</h4>
+                            <p class="text-sm text-gray-600">Custom Dining Table</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="bg-white text-gray-800 p-8 rounded-lg shadow-lg min-w-[350px] max-w-[350px] snap-start">
+                    <div class="flex text-primary mb-4">
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                    </div>
+                    <p class="mb-6 italic">"Our kitchen renovation was transformed by AVB's cabinetry. The team listened carefully to our needs and created a space that is both beautiful and functional. The craftsmanship is impeccable."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mr-4">
+                            <i class="ri-user-3-line ri-lg text-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Michael & Sarah Thompson</h4>
+                            <p class="text-sm text-gray-600">Kitchen Installation</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="bg-white text-gray-800 p-8 rounded-lg shadow-lg min-w-[350px] max-w-[350px] snap-start">
+                    <div class="flex text-primary mb-4">
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                    </div>
+                    <p class="mb-6 italic">"Alexander restored my grandmother's antique cabinet with such care and respect for its history. His knowledge of traditional techniques combined with modern solutions brought this cherished piece back to life."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mr-4">
+                            <i class="ri-user-3-line ri-lg text-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Jonathan Blackwell</h4>
+                            <p class="text-sm text-gray-600">Antique Restoration</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 4 -->
+                <div class="bg-white text-gray-800 p-8 rounded-lg shadow-lg min-w-[350px] max-w-[350px] snap-start">
+                    <div class="flex text-primary mb-4">
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                    </div>
+                    <p class="mb-6 italic">"The bespoke reception desk that AVB created for our law firm perfectly captures our brand's ethos of tradition and excellence. It makes a powerful first impression on our clients."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mr-4">
+                            <i class="ri-user-3-line ri-lg text-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Victoria Harrington</h4>
+                            <p class="text-sm text-gray-600">Commercial Project</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="playfair text-4xl font-bold text-gray-800 mb-4">Get In Touch</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Ready to discuss your project? Contact us today to schedule a consultation with our master craftsmen.</p>
+            </div>
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/2">
+                    <form action="https://formspree.io/f/xayvgrjq" method="POST" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 mb-2">Full Name</label>
+                            <input type="text" id="name" name="name" class="custom-input w-full px-4 py-3 rounded-lg bg-gray-50" placeholder="Your name" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="email" name="email" class="custom-input w-full px-4 py-3 rounded-lg bg-gray-50" placeholder="Your email" required>
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 mb-2">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="custom-input w-full px-4 py-3 rounded-lg bg-gray-50" placeholder="Your phone number" required>
+                        </div>
+                        <div>
+                            <label for="project" class="block text-gray-700 mb-2">Project Description</label>
+                            <textarea id="project" name="message" rows="4" class="custom-input w-full px-4 py-3 rounded-lg bg-gray-50" placeholder="Tell us about your project..." required></textarea>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="newsletter" name="newsletter" class="custom-checkbox mr-3">
+                            <label for="newsletter" class="text-gray-700">Subscribe to our newsletter for inspiration and updates</label>
+                        </div>
+                        <button type="submit" class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-button font-medium shadow-md hover:shadow-lg transition-all whitespace-nowrap">Send Message</button>
+                    </form>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="h-[300px] mb-8 rounded-lg overflow-hidden">
+                        <img src="https://public.readdy.ai/gen_page/map_placeholder_1280x720.png" alt="Location Map" class="w-full h-full object-cover">
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-4">
+                                <i class="ri-map-pin-line text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Workshop & Showroom</h4>
+                                <p class="text-gray-600">123 Timber Lane, Craftsville, CA 94103</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-4">
+                                <i class="ri-phone-line text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Phone</h4>
+                                <p class="text-gray-600">(555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-4">
+                                <i class="ri-mail-line text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Email</h4>
+                                <p class="text-gray-600">info@avbcarpentry.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-4">
+                                <i class="ri-time-line text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Hours</h4>
+                                <p class="text-gray-600">Monday-Friday: 9am-6pm<br>Saturday: 10am-4pm<br>Sunday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 wood-texture">
+        <div class="container mx-auto px-6">
+            <div class="bg-white/90 rounded-xl p-12 max-w-4xl mx-auto text-center">
+                <h2 class="playfair text-4xl font-bold text-gray-800 mb-6">Ready to Start Your Project?</h2>
+                <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Whether you have a clear vision or need guidance, our team is ready to bring your ideas to life with exceptional craftsmanship and attention to detail.</p>
+                <a href="#contact" class="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-3 text-lg font-medium !rounded-button shadow-lg hover:shadow-xl transition-all whitespace-nowrap">Get a Custom Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <h3 class="playfair text-2xl font-bold mb-6">AVB Carpentry</h3>
+                    <p class="text-gray-400 mb-6">Crafting exceptional wooden creations that blend traditional techniques with contemporary design for discerning clients since 2010.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 hover:bg-primary rounded-full transition-colors">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 hover:bg-primary rounded-full transition-colors">
+                            <i class="ri-instagram-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 hover:bg-primary rounded-full transition-colors">
+                            <i class="ri-pinterest-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 hover:bg-primary rounded-full transition-colors">
+                            <i class="ri-linkedin-fill"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="#portfolio" class="text-gray-400 hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="#testimonials" class="text-gray-400 hover:text-white transition-colors">Testimonials</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Services</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Custom Furniture</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Kitchen Installations</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Wood Restoration</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Architectural Elements</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Commercial Spaces</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Design Consultation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to receive inspiration, news, and updates.</p>
+                    <form id="newsletterForm" class="mb-4" onsubmit="return handleNewsletterSubmit(event)">
+                        <div class="flex">
+                            <input type="email" id="newsletterEmail" name="email" placeholder="Your email address" class="px-4 py-2 rounded-l-lg w-full bg-gray-800 border-none focus:outline-none focus:ring-2 focus:ring-primary" required>
+                            <button type="submit" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-r-lg whitespace-nowrap">
+                                <span id="newsletterButtonText">Subscribe</span>
+                                <span id="newsletterSpinner" class="hidden">
+                                    <i class="ri-loader-4-line animate-spin"></i>
+                                </span>
+                            </button>
+                        </div>
+                        <div id="newsletterSuccess" class="hidden mt-2 text-green-400 text-sm">Successfully subscribed to newsletter!</div>
+                        <div id="newsletterError" class="hidden mt-2 text-red-400 text-sm"></div>
+                    </form>
+                    <p class="text-gray-500 text-sm">We respect your privacy. Unsubscribe at any time.</p>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-800 text-center text-gray-500">
+                <p>&copy; 2025 AVB Carpentry. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Function to scroll to contact section
+        function scrollToContact() {
+            document.querySelector('#contact').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle functionality
+        const menuButton = document.querySelector('.ri-menu-line');
+        const mobileMenu = document.querySelector('.md\\:flex');
+        
+        menuButton.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex', 'flex-col', 'absolute', 'top-16', 'left-0', 'right-0', 'bg-white', 'shadow-md', 'py-4', 'z-50');
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex', 'flex-col', 'absolute', 'top-16', 'left-0', 'right-0', 'bg-white', 'shadow-md', 'py-4', 'z-50');
+            }
+        });
+
+        // Portfolio filtering functionality
+        const portfolioFilters = document.querySelectorAll('.portfolio-filter');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        let currentCategory = 'all';
+
+        portfolioFilters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                // Update active filter button
+                portfolioFilters.forEach(f => {
+                    f.classList.remove('bg-primary', 'text-white');
+                    f.classList.add('text-gray-700', 'hover:bg-gray-200');
+                });
+                filter.classList.remove('text-gray-700', 'hover:bg-gray-200');
+                filter.classList.add('bg-primary', 'text-white');
+
+                currentCategory = filter.getAttribute('data-category');
+
+                // Filter portfolio items with animation
+                portfolioItems.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+                    if (currentCategory === 'all' || itemCategory === currentCategory) {
+                        item.classList.remove('hidden');
+                        // Add a small delay to ensure the transition works
+                        setTimeout(() => {
+                            item.classList.remove('opacity-0', 'scale-80');
+                            item.classList.add('opacity-100', 'scale-100');
+                        }, 50);
+                    } else {
+                        item.classList.add('opacity-0', 'scale-80');
+                        // Add a small delay before hiding to allow for animation
+                        setTimeout(() => {
+                            item.classList.add('hidden');
+                        }, 300);
+                    }
+                });
+
+                // Reset show more/less state when filtering
+                showingAll = false;
+                togglePortfolioBtn.textContent = 'View All Projects';
+                updatePortfolioItems();
+            });
+        });
+
+        // Portfolio show more/less functionality
+        const togglePortfolioBtn = document.getElementById('togglePortfolio');
+        const itemsPerPage = 6;
+        let showingAll = false;
+
+        function updatePortfolioItems() {
+            const visibleItems = Array.from(portfolioItems).filter(item => {
+                const itemCategory = item.getAttribute('data-category');
+                return (currentCategory === 'all' || itemCategory === currentCategory) && !item.classList.contains('hidden');
+            });
+
+            visibleItems.forEach((item, index) => {
+                if (index < itemsPerPage) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        function togglePortfolioItems() {
+            showingAll = !showingAll;
+            const visibleItems = Array.from(portfolioItems).filter(item => {
+                const itemCategory = item.getAttribute('data-category');
+                return (currentCategory === 'all' || itemCategory === currentCategory);
+            });
+            
+            visibleItems.forEach((item, index) => {
+                if (showingAll) {
+                    // Show all items when "View All Projects" is clicked
+                    item.classList.remove('hidden');
+                } else {
+                    // Show only first 6 items when "Show Less" is clicked
+                    if (index < itemsPerPage) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                }
+            });
+            togglePortfolioBtn.textContent = showingAll ? 'Show Less' : 'View All Projects';
+        }
+
+        // Initialize portfolio items
+        updatePortfolioItems();
+
+        // Add click event listener to toggle button
+        togglePortfolioBtn.addEventListener('click', togglePortfolioItems);
+
+        // Contact form functionality
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function validatePhone(phone) {
+            const re = /^[\d\s\-\+\(\)]{10,}$/;
+            return re.test(phone);
+        }
+
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.classList.remove('hidden');
+        }
+
+        function hideError(elementId) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.classList.add('hidden');
+        }
+
+        function resetForm() {
+            document.getElementById('contactForm').reset();
+            document.getElementById('formSuccess').classList.add('hidden');
+            document.getElementById('formError').classList.add('hidden');
+            ['nameError', 'emailError', 'phoneError', 'projectError'].forEach(hideError);
+        }
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Reset previous errors
+            ['nameError', 'emailError', 'phoneError', 'projectError'].forEach(hideError);
+            document.getElementById('formError').classList.add('hidden');
+            document.getElementById('formSuccess').classList.add('hidden');
+
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const project = document.getElementById('project').value.trim();
+            const newsletter = document.getElementById('newsletter').checked;
+
+            // Validate inputs
+            let isValid = true;
+
+            if (name.length < 2) {
+                showError('nameError', 'Please enter a valid name');
+                isValid = false;
+            }
+
+            if (!validateEmail(email)) {
+                showError('emailError', 'Please enter a valid email address');
+                isValid = false;
+            }
+
+            if (!validatePhone(phone)) {
+                showError('phoneError', 'Please enter a valid phone number');
+                isValid = false;
+            }
+
+            if (project.length < 10) {
+                showError('projectError', 'Please provide more details about your project');
+                isValid = false;
+            }
+
+            if (!isValid) return false;
+
+            // Show loading state
+            const submitButton = document.querySelector('button[type="submit"]');
+            const submitButtonText = document.getElementById('submitButtonText');
+            const submitSpinner = document.getElementById('submitSpinner');
+            
+            submitButton.disabled = true;
+            submitButtonText.classList.add('hidden');
+            submitSpinner.classList.remove('hidden');
+
+            try {
+                // Send data to backend
+                const response = await fetch('http://localhost:3000/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        phone,
+                        project,
+                        newsletter
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Show success message
+                    document.getElementById('formSuccess').classList.remove('hidden');
+                    resetForm();
+                } else {
+                    throw new Error(data.error || 'Failed to send message');
+                }
+            } catch (error) {
+                // Show error message
+                document.getElementById('formError').classList.remove('hidden');
+                document.getElementById('errorMessage').textContent = error.message || 'Failed to send message. Please try again later.';
+            } finally {
+                // Reset button state
+                submitButton.disabled = false;
+                submitButtonText.classList.remove('hidden');
+                submitSpinner.classList.add('hidden');
+            }
+
+            return false;
+        }
+
+        // Newsletter subscription functionality
+        async function handleNewsletterSubmit(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('newsletterEmail').value.trim();
+            const submitButton = document.querySelector('#newsletterForm button[type="submit"]');
+            const buttonText = document.getElementById('newsletterButtonText');
+            const spinner = document.getElementById('newsletterSpinner');
+            const successMessage = document.getElementById('newsletterSuccess');
+            const errorMessage = document.getElementById('newsletterError');
+
+            // Reset messages
+            successMessage.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+
+            // Show loading state
+            submitButton.disabled = true;
+            buttonText.classList.add('hidden');
+            spinner.classList.remove('hidden');
+
+            try {
+                const response = await fetch('http://localhost:3000/api/newsletter', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    successMessage.classList.remove('hidden');
+                    document.getElementById('newsletterForm').reset();
+                } else {
+                    throw new Error(data.error || 'Failed to subscribe to newsletter');
+                }
+            } catch (error) {
+                errorMessage.textContent = error.message || 'Failed to subscribe. Please try again later.';
+                errorMessage.classList.remove('hidden');
+            } finally {
+                // Reset button state
+                submitButton.disabled = false;
+                buttonText.classList.remove('hidden');
+                spinner.classList.add('hidden');
+            }
+
+            return false;
+        }
+    </script>
+</body>
+</html>
