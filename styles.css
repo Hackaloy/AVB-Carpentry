@@ -1,0 +1,161 @@
+:where([class^="ri-"])::before { 
+    content: "\f3c2"; 
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+.playfair {
+    font-family: 'Playfair Display', serif;
+}
+
+.hero-section {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://public.readdy.ai/ai/img_res/e4e1f59596ff4092110bb1e89eaf6897.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.wood-texture {
+    background-image: url('https://public.readdy.ai/ai/img_res/cf2e05d4fcf49d316fb73bba77fdf425.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.testimonial-bg {
+    background-image: linear-gradient(rgba(92, 64, 51, 0.85), rgba(92, 64, 51, 0.85)), url('https://public.readdy.ai/ai/img_res/e067c9b0438a33fcbe6a271ea75eed68.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(92, 64, 51, 0.1);
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+.custom-input {
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.custom-input:focus {
+    border-color: #5C4033;
+    box-shadow: 0 0 0 3px rgba(92, 64, 51, 0.2);
+    outline: none;
+}
+
+.custom-checkbox {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #5C4033;
+    border-radius: 4px;
+    position: relative;
+}
+
+.custom-checkbox:checked {
+    background-color: #5C4033;
+}
+
+.custom-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 6px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Custom scrollbar styles */
+.testimonials-container {
+    scrollbar-width: thin;
+    scrollbar-color: #5C4033 #f5f5f5;
+    -ms-overflow-style: none;
+}
+
+.testimonials-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.testimonials-container::-webkit-scrollbar-track {
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+.testimonials-container::-webkit-scrollbar-thumb {
+    background-color: #5C4033;
+    border-radius: 4px;
+    border: 2px solid #f5f5f5;
+}
+
+.testimonials-container::-webkit-scrollbar-thumb:hover {
+    background-color: #4a3329;
+}
+
+/* Mobile Menu Styles */
+.mobile-menu {
+    transform: translateY(-20px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
+}
+
+.mobile-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-menu a {
+    position: relative;
+    transition: all 0.3s ease;
+    display: block;
+    font-size: 1.1rem;
+}
+
+.mobile-menu a:hover {
+    padding-left: 1.5rem;
+    color: #5C4033;
+    background-color: rgba(92, 64, 51, 0.05);
+}
+
+.mobile-menu a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #5C4033;
+    transition: width 0.3s ease;
+}
+
+.mobile-menu a:hover::before {
+    width: 100%;
+}
+
+/* Menu Icon Animation */
+#menuIcon {
+    transition: transform 0.3s ease;
+}
+
+#menuIcon.active {
+    transform: rotate(180deg);
+}
+
+/* Menu Button Hover Effect */
+#menuButton:hover {
+    background-color: rgba(92, 64, 51, 0.1);
+    border-radius: 8px;
+} 
